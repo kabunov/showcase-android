@@ -16,7 +16,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":data"))
+    implementation(project(":data:repository"))
     implementation(project(":model"))
 
     implementation("com.google.dagger:hilt-android:2.48.1")
