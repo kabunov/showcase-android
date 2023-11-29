@@ -2,7 +2,6 @@ package com.kabunov.showcase.db.dao
 
 import androidx.room.Dao
 import androidx.room.Query
-import androidx.room.Upsert
 import com.kabunov.showcase.db.entity.IrregularVerbDb
 import kotlinx.coroutines.flow.Flow
 
@@ -12,6 +11,6 @@ interface IrregularVerbDao {
     @Query("SELECT * FROM irregular_verbs")
     fun getAll(): Flow<List<IrregularVerbDb>>
 
-    @Upsert
-    suspend fun insertOrUpdate(irregularVerbDb: IrregularVerbDb)
+    @Query("SELECT * FROM irregular_verbs WHERE verb_id == :id")
+    fun get(id: Int): Flow<IrregularVerbDb?>
 }

@@ -4,11 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavDeepLinkRequest
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +23,7 @@ import com.kabunov.showcase.feature.list.databinding.FragmentListBinding
 import com.kabunov.showcase.feature.list.databinding.LayoutListItemBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.net.URLEncoder
 
 @AndroidEntryPoint
 class ListFragment : Fragment() {
@@ -37,7 +42,17 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val listItemsAdapter = ListItemsAdapter(null)
+        val listItemsAdapter = ListItemsAdapter(object : ListItemsAdapter.IrregularVerbAdapterListener {
+            override fun onClick(item: IrregularVerbViewData) {
+                navigateToDetails(item)
+            }
+        })
+
+        (activity as? AppCompatActivity)?.let {
+            it.setSupportActionBar(binding.toolbar)
+            it.supportActionBar?.setDisplayHomeAsUpEnabled(false)
+            it.title = "Android Showcase"
+        }
 
         binding.list.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -62,6 +77,20 @@ class ListFragment : Fragment() {
                 }
         }
     }
+
+    private fun navigateToDetails(item: IrregularVerbViewData) {
+        val request = NavDeepLinkRequest.Builder
+            .fromUri(
+                "android-app://com.kabunov.showcase/detailsFragment/${
+                    URLEncoder.encode(
+                        item.id,
+                        "utf-8"
+                    )
+                }".toUri()
+            )
+            .build()
+        findNavController().navigate(request)
+    }
 }
 
 
@@ -84,7 +113,7 @@ class ListItemsAdapter(private val listener: IrregularVerbAdapterListener?) :
         fun bind(item: IrregularVerbViewData) {
             binding.title.text = item.title
             binding.subtitle.text = item.subtitle
-//TODO            binding.root.setOnClickListener { listener?.onClick(item) }
+            binding.root.setOnClickListener { listener?.onClick(item) }
         }
     }
 

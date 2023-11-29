@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:startDestination="@id/nav_graph_list"
-    android:id="@+id/nav_graph">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/nav_graph_list">
 
-    <include app:graph="@navigation/nav_graph_list"/>
+    <include app:graph="@navigation/nav_graph_list" />
+    <include app:graph="@navigation/nav_graph_details" />
 
 </navigation>

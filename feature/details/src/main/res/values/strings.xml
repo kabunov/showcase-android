@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="infinitive">Infinitive</string>
+    <string name="past_simple">Past Simple</string>
+    <string name="past_participle">Past Participle</string>
+    <string name="definition">Definition</string>
+    <string name="example">Example</string>
+</resources>

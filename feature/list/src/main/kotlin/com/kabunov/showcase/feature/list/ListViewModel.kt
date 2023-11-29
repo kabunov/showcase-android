@@ -2,7 +2,7 @@ package com.kabunov.showcase.feature.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kabunov.showcase.domain.usecase.GetListUsecase
+import com.kabunov.showcase.domain.usecase.GetListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ListViewModel @Inject constructor(
-    getListUsecase: GetListUsecase,
+    getListUsecase: GetListUseCase,
     irregularVerbDomainToViewDataMapper: IrregularVerbDomainToViewDataMapper
 ) : ViewModel() {
 
