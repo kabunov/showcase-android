@@ -15,4 +15,9 @@ dependencyResolutionManagement {
 
 rootProject.name = "Android Showcase"
 include(":app")
- 
+include(":feature:list")
+include(":feature:details")
+include(":data")
+include(":domain")
+include(":model")
+include(":db")
