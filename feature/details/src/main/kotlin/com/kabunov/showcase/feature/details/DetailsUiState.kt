@@ -15,4 +15,5 @@ data class IrregularVerbDetailsViewData(
     val pastSimple: String,
     val pastParticiple: String,
     val definition: String,
+    val bookmarked: Boolean,
 )

@@ -13,4 +13,7 @@ interface IrregularVerbDao {
 
     @Query("SELECT * FROM irregular_verbs WHERE verb_id == :id")
     fun get(id: Int): Flow<IrregularVerbDb?>
+
+    @Query("UPDATE irregular_verbs SET selected = :bookmarked WHERE verb_id == :id")
+    suspend fun toggleBookmark(id: Int, bookmarked: Boolean): Int
 }

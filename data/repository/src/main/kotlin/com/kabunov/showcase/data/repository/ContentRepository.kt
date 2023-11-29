@@ -9,4 +9,6 @@ interface ContentRepository {
     fun getIrregularVerbs(): Flow<List<IrregularVerb>>
 
     fun getIrregularVerbDetails(id: String): Flow<IrregularVerbDetails?>
+
+    suspend fun toggleBookmark(id: String, bookmarked: Boolean): Int
 }

@@ -29,4 +29,13 @@ class ContentRepositoryDb @Inject constructor(
             }
         }
     }
+
+    override suspend fun toggleBookmark(id: String, bookmarked: Boolean): Int {
+        val idInt = id.toIntOrNull()
+        if (idInt == null) {
+            throw IllegalArgumentException("Incorrect param $id")
+        } else {
+            return dbDataSource.toggleBookmark(idInt, bookmarked)
+        }
+    }
 }

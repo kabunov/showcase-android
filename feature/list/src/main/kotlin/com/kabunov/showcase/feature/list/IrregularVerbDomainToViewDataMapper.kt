@@ -11,6 +11,7 @@ class IrregularVerbDomainToViewDataMapper @Inject constructor() : (IrregularVerb
             id = item.id,
             title = item.presentSimple,
             subtitle = formatVersionTitles(item.pastSimple) + "  " + formatVersionTitles(item.pastParticiple),
+            bookmarked = item.bookmarked,
         )
     }
 

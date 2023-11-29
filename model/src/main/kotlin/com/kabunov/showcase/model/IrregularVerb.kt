@@ -5,6 +5,7 @@ data class IrregularVerb(
     val presentSimple: String,
     val pastSimple: IrregularVerbForm,
     val pastParticiple: IrregularVerbForm,
+    val bookmarked: Boolean,
 )
 
 data class IrregularVerbDetails(
@@ -12,6 +13,7 @@ data class IrregularVerbDetails(
     val presentSimple: String,
     val pastSimple: IrregularVerbForm,
     val pastParticiple: IrregularVerbForm,
+    val bookmarked: Boolean,
     val description: String,
 )
 

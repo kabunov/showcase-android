@@ -10,10 +10,11 @@ class IrregularVerbDetailsDbToDomainMapper @Inject constructor() : (IrregularVer
     override fun invoke(db: IrregularVerbDb): IrregularVerbDetails {
         return IrregularVerbDetails(
             id = db.verbId.toString(),
-            presentSimple = db.v1 ?: "",
+            presentSimple = db.v1,
             pastSimple = IrregularVerbForm(db.v2_1, db.v2_2),
             pastParticiple = IrregularVerbForm(db.v3_1, db.v3_2),
-            description = db.definition ?: ""
+            bookmarked = db.selected ?: false,
+            description = db.definition,
         )
     }
 }

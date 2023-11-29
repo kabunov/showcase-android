@@ -46,6 +46,10 @@ class ListFragment : Fragment() {
             override fun onClick(item: IrregularVerbViewData) {
                 navigateToDetails(item)
             }
+
+            override fun onBookmarkClick(item: IrregularVerbViewData) {
+                viewModel.toggleBookmark(item.id, !item.bookmarked)
+            }
         })
 
         (activity as? AppCompatActivity)?.let {
@@ -113,7 +117,10 @@ class ListItemsAdapter(private val listener: IrregularVerbAdapterListener?) :
         fun bind(item: IrregularVerbViewData) {
             binding.title.text = item.title
             binding.subtitle.text = item.subtitle
+            binding.bookmark.setImageResource(if (item.bookmarked) R.drawable.ic_star else R.drawable.ic_star_outline)
+
             binding.root.setOnClickListener { listener?.onClick(item) }
+            binding.bookmark.setOnClickListener { listener?.onBookmarkClick(item) }
         }
     }
 
@@ -129,5 +136,7 @@ class ListItemsAdapter(private val listener: IrregularVerbAdapterListener?) :
 
     interface IrregularVerbAdapterListener {
         fun onClick(item: IrregularVerbViewData)
+
+        fun onBookmarkClick(item: IrregularVerbViewData)
     }
 }

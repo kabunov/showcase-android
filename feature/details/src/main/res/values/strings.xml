@@ -5,4 +5,7 @@
     <string name="past_participle">Past Participle</string>
     <string name="definition">Definition</string>
     <string name="example">Example</string>
+
+    <string name="menu_bookmark">Add to bookmarks</string>
+    <string name="menu_unbookmark">Remove from bookmarks</string>
 </resources>
